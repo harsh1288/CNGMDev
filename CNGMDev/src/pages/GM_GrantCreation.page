@@ -1,0 +1,73 @@
+<apex:page controller="test123">
+    <apex:stylesheet value="{!URLFOR($Resource.SalesforceLightningDesign, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+        <apex:form id="frm" styleClass="slds">
+           <div class="slds-page-header" role="banner">
+               <div class="slds-grid">
+                    <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="Grant Creation">Grant Creation</h3>
+               </div>
+           </div>
+            <apex:pageBlock >
+                      
+                <apex:selectRadio layout="pageDirection" value="{!selectOpt}">
+                        <apex:selectOptions value="{!Items}"/>
+                         <apex:actionSupport event="onchange" action="{!pmRecPR}" /> 
+                </apex:selectRadio>
+                
+                <apex:pageBlock rendered="{!blnExtSSF}">
+                    <apex:PageBlockSection >
+                            <apex:selectList label="Country" title="Country" size="1" value="{!CountryId}" styleclass="slds-select" id="country" disabled="false" >
+                                  <apex:selectOptions value="{!selOptCountry}" />
+                                <apex:actionSupport event="onchange" action="{!IPByCountry}" reRender="pbTable,grant"/>
+                            </apex:selectList>
+                            
+                            <apex:selectList label="Component" title="Component" size="1" value="{!strComponent}" styleclass="slds-select" id="component" disabled="false" >
+                                  <apex:selectOptions value="{!selOptComponent}" />
+                                <apex:actionSupport event="onchange" action="{!Grantbycomp}" reRender="pbTable,grant"/>
+                            </apex:selectList>
+                            
+                            <apex:selectList label="Grant" title="Grant" size="1" value="{!strGrant}" styleclass="slds-select" id="grant" disabled="false" >
+                                  <apex:selectOptions value="{!selOptGrant}" />
+                            </apex:selectList>
+                            
+                            <!--<apex:pageBlockTable id="pbTable" value="{!lstIP}" var="g">
+                                <apex:column value="{!g.name}"/>
+                            </apex:pageBlockTable>-->
+                    </apex:PageBlockSection>
+                    <apex:pageBlockButtons >
+                     <!--   <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/> -->
+                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Create GIP" action="/apex/GM_newGrantRequest"/>
+                    </apex:pageBlockButtons>
+                </apex:pageBlock>
+                <apex:pageBlock rendered="{!blnNewGrant}">
+                    <apex:PageBlockSection >
+                            <apex:selectList label="Country" title="Country" size="1" value="{!CountryId}" styleclass="slds-select" id="country" disabled="false" >
+                                  <apex:selectOptions value="{!selOptCountry}" />
+                                  <apex:actionSupport event="onchange" action="{!fillPRCountry}" reRender="Account"/>
+                            </apex:selectList>
+                            
+                            <apex:selectList label="Component" title="Component" size="1" value="{!strComponent}" styleclass="slds-select" id="component" disabled="false" >
+                                  <apex:selectOptions value="{!selOptComponent}" />
+                                
+                            </apex:selectList>
+                            
+                            <apex:selectList label="PR Account" title="PR Account" size="1" value="{!strAcc}" styleclass="slds-select" id="Account" disabled="false" >
+                                  <apex:selectOptions value="{!selAcc}" />
+                            </apex:selectList>
+                            
+                            <apex:outputText title="PR TBD" label="PR TBD"></apex:outputText>
+                            <!--<apex:pageBlockTable id="pbTable" value="{!lstIP}" var="g">
+                                <apex:column value="{!g.name}"/>
+                            </apex:pageBlockTable>-->
+                    </apex:PageBlockSection>
+                    <apex:pageBlockButtons >
+                       <!-- <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/> -->
+                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Create GIP" action="/apex/GM_newGrantRequest"/>
+                    </apex:pageBlockButtons>
+                </apex:pageBlock>
+                <apex:pageBlockButtons >
+                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/>
+                        
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>
