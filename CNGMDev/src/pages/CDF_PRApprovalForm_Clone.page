@@ -114,12 +114,18 @@ body .pbBody table.list tr.headerRow td,body .pbBody table.list tr.headerRow th
     width: 3px;
     top: 1px;
     bottom: 1px;
-    height: 70%;
+    height: 70%;    
 }
 .inputfld
 {
 	width:35% !important;
 	height:90% !important;
+}
+.inputfldtbl
+{
+	height:80% !important;
+	margin-bottom:0px !important;
+	width:85% !important;
 } 
 </style>
     <script>
@@ -546,7 +552,7 @@ Processing this form after receipt by the Global Fund will take some time due to
                                 <div class="requiredInput">
                                     <div class="{!IF(account.Different_Primary_Contact_Address__c == true, 'requiredBlock', '')}"></div>  
                                   
-                                        <apex:inputField id="add1_prim" value="{!account.Address_line_1_Primary__c}"/>
+                                        <apex:inputField styleClass="inputfld" id="add1_prim" value="{!account.Address_line_1_Primary__c}"/>
                                  </div>  
                             </apex:outputpanel>            
                          </apex:pageBlockSectionItem> 
@@ -554,8 +560,8 @@ Processing this form after receipt by the Global Fund will take some time due to
                         
                         
                         
-                        <apex:inputField id="add2_prim" value="{!account.Address_line_2_Primary__c}" />     
-                        <apex:inputField id="add3_prim" value="{!account.Address_line_3_Primary__c}" />
+                        <apex:inputField styleClass="inputfld" id="add2_prim" value="{!account.Address_line_2_Primary__c}" />     
+                        <apex:inputField styleClass="inputfld" id="add3_prim" value="{!account.Address_line_3_Primary__c}" />
                         
                         <apex:pageBlockSectionItem id="pCityItem">
                            <apex:outputLabel value="City"/>
@@ -563,7 +569,7 @@ Processing this form after receipt by the Global Fund will take some time due to
                                 <div class="requiredInput">
                                     <div class="{!IF(account.Different_Primary_Contact_Address__c == true, 'requiredBlock', '')}"></div>  
                                   
-                                            <apex:inputField id="city_prim" value="{!account.City_Primary__c}"/>
+                                            <apex:inputField styleClass="inputfld" id="city_prim" value="{!account.City_Primary__c}"/>
                                  </div>  
                             </apex:outputpanel>            
                          </apex:pageBlockSectionItem> 
@@ -574,7 +580,7 @@ Processing this form after receipt by the Global Fund will take some time due to
                                 <div class="requiredInput">
                                     <div class="{!IF(account.Different_Primary_Contact_Address__c == true, 'requiredBlock', '')}"></div>  
                                   
-                                          <apex:inputField id="state_prim" value="{!account.State_Province_Primary__c}"/>                
+                                          <apex:inputField styleClass="inputfld" id="state_prim" value="{!account.State_Province_Primary__c}"/>                
                                  </div>  
                             </apex:outputpanel>            
                          </apex:pageBlockSectionItem> 
@@ -585,7 +591,7 @@ Processing this form after receipt by the Global Fund will take some time due to
                                 <div class="requiredInput">
                                     <div class="{!IF(account.Different_Primary_Contact_Address__c == true, 'requiredBlock', '')}"></div>  
                                   
-                                        <apex:inputField id="zip_prim" value="{!account.Zip_Postal_Code_Primary__c}"/>
+                                        <apex:inputField styleClass="inputfld" id="zip_prim" value="{!account.Zip_Postal_Code_Primary__c}"/>
                                  </div>  
                             </apex:outputpanel>            
                          </apex:pageBlockSectionItem> 
@@ -677,9 +683,9 @@ Processing this form after receipt by the Global Fund will take some time due to
                 <apex:outputPanel id="newOP">  
             <table class="list"  style="background-color: white;table-layout: fixed;width:100%;">
                 <tr class="headerRow ">
-                    <th class="headerRow tableRowstyleDetails" style="width:6%">
+                    <th class="headerRow tableRowstyleDetails" style="width:9%">
                     Primary Contact</th>
-                    <th class="headerRow tableRowstyleRole" style="width:15%">
+                    <th class="headerRow tableRowstyleRole" style="width:13%">
                     Role</th>
                     <th class="headerRow tableRowstyleDetails" style="width:8.5%" >
                     Salutation</th>
@@ -714,8 +720,8 @@ Processing this form after receipt by the Global Fund will take some time due to
                     
 
                     </td>
-                    <td class="dataCell tableRowstyleRole">
-                        <apex:outputField value="{!grantAgreement.Role__c}" style="width:220px" />
+                    <td class="dataCell tableRowstyleRole" style="white-space:normal;">
+                        <apex:outputField value="{!grantAgreement.Role__c}" style="width:220px;" />
                     </td>
                     <td class="dataCell tableRowstyleDetails" >                    
                       <center><apex:inputField value="{!grantAgreement.Salutation}" style="width:95%" /></center>
@@ -723,35 +729,35 @@ Processing this form after receipt by the Global Fund will take some time due to
                     <td class="dataCell  tableRowstyle">
                     <div class="requiredInput">
                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                        <center><apex:inputField value="{!grantAgreement.FirstName}" style="width:85%" /></center>
+                        <center><apex:inputField styleclass="inputfldtbl" value="{!grantAgreement.FirstName}"/></center>
                     </div>
                     </td>
                     <td class="dataCell  tableRowstyle">
                     <div class="requiredInput">
                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                    <center><apex:inputField value="{!grantAgreement.LastName}"
-                                             required="false" style="width:85%"/></center></div>
+                    <center><apex:inputField value="{!grantAgreement.LastName}" styleclass="inputfldtbl" 
+                                             required="false"/></center></div>
                     </td>
                     <td class="dataCell tableRowstyle ">
                      <div class="requiredInput">
                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                         <center><apex:inputField value="{!grantAgreement.Title}" required="false" style="width:85%"/></center>
+                         <center><apex:inputField value="{!grantAgreement.Title}" required="false" styleclass="inputfldtbl"/></center>
                     </div>
                     </td>
                     <td class="dataCell  tableRowstyle">   
                        <div class="requiredInput">
                         <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>               
-                           <center><apex:inputField value="{!grantAgreement.Email}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                           <center><apex:inputField value="{!grantAgreement.Email}" styleclass="inputfldtbl" /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                         </div>
                     </td>
                     <td class="dataCell  tableRowstyle">
-                        <center><apex:inputField value="{!grantAgreement.Phone}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                        <center><apex:inputField value="{!grantAgreement.Phone}" styleclass="inputfldtbl" /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                     </td>
                     <td class="dataCell  tableRowstyle">
-                        <center><apex:inputField value="{!grantAgreement.Fax}" style="width:85%"/></center> 
+                        <center><apex:inputField value="{!grantAgreement.Fax}" styleclass="inputfldtbl" /></center> 
                     </td>
                     <td class="dataCell  tableRowstyle">
-                        <center><apex:inputField value="{!grantAgreement.Department}" style="width:85%"/></center>
+                        <center><apex:inputField value="{!grantAgreement.Department}" styleclass="inputfldtbl" /></center>
                     </td>
                 </tr>
                 <tr class="dataCell ">
@@ -776,47 +782,46 @@ Processing this form after receipt by the Global Fund will take some time due to
                     
 
                     </td>
-                    <td class="dataCell tableRowstyleRole" >
-                        <apex:outputField value="{!disbursementRequest1.Role__c}" style="width:220px" /></td>
+                    <td class="dataCell tableRowstyleRole" style="white-space:normal;">
+                        <apex:outputField value="{!disbursementRequest1.Role__c}" style="width:220px;" /></td>
                     <td class="dataCell tableRowstyleDetails" >
                         <center><apex:inputField value="{!disbursementRequest1.Salutation}" style="width:95%" /></center>
                     </td>
                     <td class="dataCell  tableRowstyle">
                     <div class="requiredInput">
                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                        <center><apex:inputField value="{!disbursementRequest1.FirstName}" style="width:85%"/></center>
+                        <center><apex:inputField value="{!disbursementRequest1.FirstName}" styleclass="inputfldtbl"/></center>
                     </div>
                     </td>
                     <td class="dataCell  tableRowstyle">
                     <div class="requiredInput">
                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                    	<center><apex:inputField value="{!disbursementRequest1.LastName}"
-                                                 required="false" style="width:85%"/></center>
+                    	<center><apex:inputField value="{!disbursementRequest1.LastName}" styleclass="inputfldtbl" 
+                                                 required="false"/></center>
                     </div>
                     <!--                <apex:inputField value="{!disbursementRequest1.LastName}"/>-->
                     </td>
                     <td class="dataCell  tableRowstyle">
                     <div class="requiredInput">
                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                    	<center><apex:inputField value="{!disbursementRequest1.Title}" required="false"
-                               style="width:85%"/></center>
+                    	<center><apex:inputField value="{!disbursementRequest1.Title}" required="false" styleclass="inputfldtbl"/></center>
                     </div>
                     </td>
                     <td class="dataCell  tableRowstyle">
                         <div class="requiredInput">
                             <div class="{!IF(blnFinanceMode,'','requiredBlock')}">
                             </div>
-                            <center><apex:inputField value="{!disbursementRequest1.Email}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                            <center><apex:inputField value="{!disbursementRequest1.Email}" styleclass="inputfldtbl" /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                         </div>
                     </td>
-                    <td class="dataCell">
-                        <center><apex:inputField value="{!disbursementRequest1.Phone}" style="width:73%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->    
+                    <td class="dataCell tableRowstyle">
+                        <center><apex:inputField value="{!disbursementRequest1.Phone}" styleclass="inputfldtbl"  /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->    
                     </td>
-                    <td class="dataCell">
-                        <center><apex:inputField value="{!disbursementRequest1.Fax}" style="width:73%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->    
+                    <td class="dataCell tableRowstyle">
+                        <center><apex:inputField value="{!disbursementRequest1.Fax}" styleclass="inputfldtbl"  /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->    
                     </td>
-                    <td class="dataCell">
-                        <center><apex:inputField value="{!disbursementRequest1.Department}" style="width:73%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->    
+                    <td class="dataCell tableRowstyle">
+                        <center><apex:inputField value="{!disbursementRequest1.Department}" styleclass="inputfldtbl" /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->    
                     </td>                    
                 </tr>
                 <tr class="dataCell  ">
@@ -842,44 +847,44 @@ Processing this form after receipt by the Global Fund will take some time due to
 
                     
                     </td>
-                    <td class="dataCell tableRowstyleRole" >
-                    <apex:outputField value="{!disbursementRequest2.Role__c}" style="width:220px" /></td>
+                    <td class="dataCell tableRowstyleRole" style="white-space:normal;" >
+                    <apex:outputField value="{!disbursementRequest2.Role__c}" style="width:220px;" /></td>
                     <td class="dataCell tableRowstyleDetails" >
                         <center><apex:inputField value="{!disbursementRequest2.Salutation}" style="width:95%"/></center>
                     </td>
                     <td class="dataCell  tableRowstyle">
                         <div class="requiredInput">
                             <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>                    
-                            <center><apex:inputField value="{!disbursementRequest2.FirstName}" style="width:85%"/></center>
+                            <center><apex:inputField value="{!disbursementRequest2.FirstName}" styleclass="inputfldtbl"/></center>
                         </div>
                     </td>
                     <td class="dataCell  tableRowstyle">     
                         <div class="requiredInput">
                             <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>          
-                            <center><apex:inputField value="{!disbursementRequest2.LastName}" required="false" style="width:85%"/></center>
+                            <center><apex:inputField value="{!disbursementRequest2.LastName}" required="false" styleclass="inputfldtbl"/></center>
                     <!--                <apex:inputField value="{!disbursementRequest2.LastName}"/>-->
                             </div> 
                     </td>
                     <td class="dataCell  tableRowstyle">
                         <div class="requiredInput">
                             <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                            <center><apex:inputField value="{!disbursementRequest2.Title}"  required="false" style="width:85%"/></center>                    
+                            <center><apex:inputField value="{!disbursementRequest2.Title}"  required="false" styleclass="inputfldtbl" /></center>                    
                         </div>
                     </td>
                     <td class="dataCell  tableRowstyle">
                       <div class="requiredInput">
                         <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>       
-                          <center><apex:inputField value="{!disbursementRequest2.Email}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                          <center><apex:inputField value="{!disbursementRequest2.Email}" styleclass="inputfldtbl"  /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                         </div>      
                     </td>
                     <td class="dataCell  tableRowstyle">
-                        <center><apex:inputField value="{!disbursementRequest2.Phone}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                        <center><apex:inputField value="{!disbursementRequest2.Phone}" styleclass="inputfldtbl"  /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                     </td>
                      <td class="dataCell  tableRowstyle">
-                         <center><apex:inputField value="{!disbursementRequest2.Fax}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                         <center><apex:inputField value="{!disbursementRequest2.Fax}" styleclass="inputfldtbl" /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                     </td>
                      <td class="dataCell  tableRowstyle">
-                         <center><apex:inputField value="{!disbursementRequest2.Department}" style="width:85%"/></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                         <center><apex:inputField value="{!disbursementRequest2.Department}" styleclass="inputfldtbl" /></center> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                     </td>
 
                 </tr>
@@ -933,49 +938,49 @@ Processing this form after receipt by the Global Fund will take some time due to
                             <!-- <apex:inputField value="{!contactNew.Role__c}" style="width:120px"/>-->
                             <apex:actionRegion >
                             <apex:selectList id="chooseColor" value="{!contactNew.Role__c}"
-                                size="1" style="width: 200px;"  styleClass="selectListCss">
+                                size="1" style="width: 90%;"  styleClass="selectListCss">
                                 <apex:selectOptions value="{!ContactRoleList}" />
                             </apex:selectList>
                             </apex:actionRegion>
                             </td>
                             <td class="dataCell tableRowstyleDetails">
-                            <apex:inputField value="{!contactNew.salutation}" style="width:100px" id="salutation"/> 
+                            <apex:inputField value="{!contactNew.salutation}" style="width:95%" id="salutation"/> 
                           
                             </td>
                             <td class="dataCell  tableRowstyle">
                                 <div class="requiredInput">
                                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                            <apex:inputField value="{!contactNew.FirstName}" id="FName"/>
+                            <apex:inputField value="{!contactNew.FirstName}" styleclass="inputfldtbl"  style="margin-left: 7px;" id="FName"/>
                             </div> 
                             <!-- <apex:outputField value="{!contact.FirstName}" rendered="{!IF(contact.Id!=NULL,true,false)}"/>-->
                             </td>
                             <td class="dataCell  tableRowstyle">
                             <div class="requiredInput">
                             <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                            <apex:inputField value="{!contactNew.LastName}" required="false" id="LName"/>
+                            <apex:inputField value="{!contactNew.LastName}" styleclass="inputfldtbl" style="margin-left: 7px;" required="false" id="LName"/>
                             </div>
                             </td>
                             <td class="dataCell  tableRowstyle">
                             <div class="requiredInput">
                             <div class="{!IF(blnFinanceMode,'','requiredBlock')}"></div>
-                            <apex:inputField value="{!contactNew.Title}" id="Title"/></div>
+                            <apex:inputField value="{!contactNew.Title}" styleclass="inputfldtbl" style="margin-left: 7px;" id="Title"/></div>
                             <!--            <apex:outputField value="{!contactNew.Title}" rendered="{!IF(contactNew.Id!=NULL,true,false)}"/>-->
                             </td>
                             <td class="dataCell  tableRowstyle">
                                 <div class="requiredInput">
                                     <div class="{!IF(blnFinanceMode,'','requiredBlock')}">
                                     </div>
-                                    <apex:inputField value="{!contactNew.Email}" id="Email"></apex:inputField> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
+                                    <apex:inputField styleclass="inputfldtbl" style="margin-left: 7px;" value="{!contactNew.Email}" id="Email"></apex:inputField> <!-- Removed required styling -- 2014-6-17 Matthew Miller -->
                                 </div>
                             </td>
                             <td class="dataCell  tableRowstyle">
-                              <apex:inputField value="{!contactNew.Phone}" id="Phone"/> 
+                              <apex:inputField value="{!contactNew.Phone}" style="width: 85%;margin-left: 7px;margin-bottom:0px;height:130%;" id="Phone"/> 
                             </td>
                             <td class="dataCell  tableRowstyle">
-                              <apex:inputField value="{!contactNew.Fax}" id="Fax"/> 
+                              <apex:inputField value="{!contactNew.Fax}" style="width: 85%;margin-left: 7px;margin-bottom:0px;height:130%;" id="Fax"/> 
                             </td>
                             <td class="dataCell  tableRowstyle">
-                              <apex:inputField value="{!contactNew.Department}" id="Department" /> 
+                              <apex:inputField value="{!contactNew.Department}" style="width: 85%;margin-left: 7px;margin-bottom:0px;height:130%;" id="Department" /> 
                             </td>
                              
                         </tr>
