@@ -27,15 +27,19 @@
                             
                             <apex:selectList label="Grant" title="Grant" size="1" value="{!strGrant}" styleclass="slds-select" id="grant" disabled="false" >
                                   <apex:selectOptions value="{!selOptGrant}" />
+                                  <apex:actionSupport event="onchange" action="{!ShowIP}" />
                             </apex:selectList>
+                            
+                            <apex:outputText value="{!lstIP[0].Name}" rendered = "{!blnShowIP}"/>
                             
                             <!--<apex:pageBlockTable id="pbTable" value="{!lstIP}" var="g">
                                 <apex:column value="{!g.name}"/>
                             </apex:pageBlockTable>-->
                     </apex:PageBlockSection>
+                    
                     <apex:pageBlockButtons >
                      <!--   <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/> -->
-                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Create GIP" action="/apex/GM_newGrantRequest"/>
+                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Create GIP" action="{!createGIPExtSSF}" rendered="{!!blnShowIP}"/>
                     </apex:pageBlockButtons>
                 </apex:pageBlock>
                 <apex:pageBlock rendered="{!blnNewGrant}">
