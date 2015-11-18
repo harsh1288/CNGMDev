@@ -1,4 +1,4 @@
-public with sharing class test123 {
+public with sharing class GM_GrantCreationController {
 
 public string selectOpt{get;set;}
 public boolean blnExtSSF {get;set;}
@@ -22,7 +22,7 @@ public String strCompCode;
 public String strConCode;
 public String strShortNM;   
  
-    public test123(){
+    public GM_GrantCreationController(){
     blnShowIP = false;    
     FillCountry(strCountry);
     IPByCountry();  
