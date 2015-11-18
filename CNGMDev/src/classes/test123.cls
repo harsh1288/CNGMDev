@@ -16,6 +16,7 @@ public String strGrant{get;set;}
 public String strAcc{get;set;}
 public List<Grant__c> lstGrant{get;set;} 
 public List<Implementation_Period__c> lstIP {get;set;}
+public String ipName {get;set;}
 public String strAccid;
 public String strCompCode;
 public String strConCode;
@@ -94,8 +95,10 @@ public String strShortNM;
     public void fillComponent(){
         selOptComponent =  new List<SelectOption>();
         selOptComponent.add(new SelectOption('',Label.All_Countries));
+         selOptComponent.add(new SelectOption('Malaria','Malaria'));
          selOptComponent.add(new SelectOption('HIV/AIDS','HIV/AIDS'));
          selOptComponent.add(new SelectOption('Tuberculosis','Tuberculosis'));
+         selOptComponent.add(new SelectOption('HIV/TB','HIV/TB'));
     }
     
      public Void Grantbycomp(){
@@ -189,4 +192,53 @@ public String strShortNM;
 	        ref.setRedirect(true);
             return ref; 
    		}
+   		
+   		public void updatableIPName(){
+   			
+   			if(strComponent == 'Malaria'){
+                    strCompCode = 'M';
+                }else if(strComponent == 'Tuberculosis'){
+                    strCompCode = 'T';
+                }else if(strComponent == 'HIV/AIDS'){
+                    strCompCode = 'H';
+                }else if(strComponent == 'HIV/TB'){
+                    strCompCode = 'C';
+                }else{
+                    strCompCode = 'S';
+                }
+                
+   			 List<Account> lstAccForNM = [Select Id,Short_Name__c,Country__r.Country_Code__c From Account where Id  =: strAcc];
+			        for(Account acc : lstAccForNM ){
+			            strConCode = acc.Country__r.Country_Code__c;
+			            strShortNM = acc.Short_Name__c;
+			        }
+			        
+		        ipName = strConCode+'-'+strCompCode+'-'+strShortNM+'-'+'P'+'1';
+		        blnShowIP = true;
+   		}
+   		
+   		public Pagereference createNewGrant(){
+   			System.debug('---Name in submit method--'+ipName);
+	   		Grant__c objGrant = new Grant__c();
+	   		objGrant.Country__c = CountryId;
+	   		objGrant.Disease_Component__c = strComponent;
+	   		objGrant.Principal_Recipient__c = strAcc;
+	   		objGrant.Grant_Type__c = 'SSF';
+	   		insert objGrant;
+	   		
+	    	Implementation_Period__c objIP = new Implementation_Period__c();
+	    	//Integer i;
+    		objIP.Grant__c = objGrant.id;
+    	  	objIP.Principal_Recipient__c = strAcc;    
+	        objIP.name = ipName;
+	        //objIP.Implementation_Cycle__c = 'P'+'1';
+	        objIP.Status__c = 'Grant-Making';
+		    insert objIP;
+		    System.debug('--Id-'+objIP.Id); 
+		        
+		     Pagereference ref = new Pagereference('/'+objIP.id);
+		        ref.setRedirect(true);
+	            return ref; 
+   		}
+   		
   }
