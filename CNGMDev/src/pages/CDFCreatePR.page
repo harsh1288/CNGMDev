@@ -1,0 +1,33 @@
+<apex:page standardController="Account" extensions="GMCreatePRExtension">
+<apex:stylesheet value="{!URLFOR($Resource.SalesforceLightningDesign, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+  <apex:form styleclass="slds">
+      <apex:pageBlock >
+          <apex:pageBlockSection collapsible="true" columns="2" title="Organization Details">
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.Name}"/>
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.Short_Name__c}"/>
+              
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.PR_Type__c}"/>
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.PR_Sub_Type__c}"/>
+               <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.Address_line_1_Primary__c}"/>
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.Address_line_2_Primary__c}"/>
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.Address_line_3_Primary__c}"/>
+              <apex:inputField style="width:50%; height:30px" value="{!accRec.Country__c}"/>
+              <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!accRec.City_Primary__c}"/>
+             
+          </apex:pageBlockSection>
+          <apex:pageBlockSection collapsible="true" columns="2" title="Contact Details">
+          <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!conRec.Firstname}"/>
+          <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!conRec.Lastname}"/>
+          <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!conRec.Phone}"/>
+          <apex:inputField styleclass="slds-input" style="width:50%; height:8px" value="{!conRec.Email}"/>
+          </apex:pageBlockSection>
+         
+            <apex:pageBlockButtons >
+                <apex:commandButton styleclass="slds-button slds-button--brand" value="Save" action="{!save}"/>
+                <apex:commandButton styleclass="slds-button slds-button--brand" value="Submit"/>
+            </apex:pageBlockButtons>
+            
+      </apex:pageBlock>
+       
+  </apex:form>
+</apex:page>
