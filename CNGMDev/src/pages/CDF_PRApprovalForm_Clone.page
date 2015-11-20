@@ -377,7 +377,8 @@
                         <apex:outputPanel >
                             <div class="requiredInput">
                                 <div class="requiredBlock"></div>                     
-                                <apex:inputField styleClass="inputfld" value="{!account.Address_line_1__c}"/>        
+                                <apex:inputField styleClass="inputfld" value="{!account.Address_line_1__c}"/>
+                                <apex:inputhidden value="{!account.Locked__c}"/>        
                             </div>  
                         </apex:outputpanel>            
                     </apex:pageBlockSectionItem>                
@@ -520,8 +521,8 @@
                 </apex:outputPanel>
             </apex:pageblock>
             <apex:pageblock title="Grant Specific Information" id="pb2">
-         <!--            <apex:pageBlockSection columns="2" collapsible="true" id="pbs2">
-                        <apex:pageBlockSectionItem >
+                     <apex:pageBlockSection columns="2" collapsible="true" id="pbs2">
+          <!--              <apex:pageBlockSectionItem >
                             <apex:outputLabel value="Implementation Period Name"
                                 for="implementationPeriod__name" />
                             <apex:outputText value="{!implementationPeriod.name}"
@@ -538,11 +539,11 @@
                                     </apex:outputpanel>            
                                  </apex:pageBlockSectionItem> 
         
-        
+        -->
                         <apex:inputField id="grantee" value="{!account.Grantee_Name__c}" style="width: 175px;height: 75px;"/>
                     </apex:pageBlockSection>
         
-            -->
+            
                     <br>
                     <span style="font-size: 17px;">
                     <h3>Principal Recipient Contacts</h3>
