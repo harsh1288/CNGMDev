@@ -12,8 +12,9 @@ Public with sharing class GMCreatePRExtension{
       prRecTypeId= [Select id from RecordType where Developername ='PR' limit 1].ID;
    }
 
-    public pagereference save(){
+    public pageReference save(){
         accRec.RecordTypeID = prRecTypeId;
+        accRec.Approval_Status__c = 'Requested';
         insert accRec;
         system.debug('@@accRec.id'+accRec.id);
         
@@ -21,8 +22,12 @@ Public with sharing class GMCreatePRExtension{
         insert conRec;
         system.debug('@@Contact'+conRec);  
         
-        Pagereference page = New PageReference('/' + accRec.id);
+        Pagereference page = New PageReference('/apex/PRformList');
         return page ;
    }
-
+    
+    public pageReference cancelRequest(){
+        Pagereference page = New PageReference('/apex/PRformList');
+        return page ;
+    }
 }
