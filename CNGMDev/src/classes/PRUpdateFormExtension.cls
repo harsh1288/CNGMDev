@@ -54,7 +54,7 @@ public with sharing class PRUpdateFormExtension {
              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, System.label.CDF_Account_Missing));return;
              
          }
-         account = getAccount(controller.getid());
+         account = (Account)controller.getrecord();
          // TODO : Add Error
          populateContactRoleList();
          init();
@@ -602,8 +602,8 @@ public with sharing class PRUpdateFormExtension {
                      System.debug('>>>>>implementationPeriod'+implementationPeriod);
                      update implementationPeriod;
                      account.Submitted_GIP_Id__c = implementationPeriod.Id;
-                     update account;
- */       
+*/                      update account;
+       
                      // Upsert Key Contacts
                      system.debug('>>>>clistContactsoUpdate'+listContacts);
                      List<Contact> lstContactToUpdate = new List<Contact>();
@@ -852,7 +852,7 @@ public with sharing class PRUpdateFormExtension {
 
      public Pagereference attachfile(){
          saveRecord();
-         Pagereference ref = new Pagereference('/p/attach/NoteAttach?pid='+account.Id+'&parentname='+account.Name+'&retURL=/apex/CDF_PRApprovalForm?id='+account.Id);
+         Pagereference ref = new Pagereference('/p/attach/NoteAttach?pid='+account.Id+'&parentname='+account.Name+'&retURL=/apex/CDF_PRApprovalForm_Clone?id='+account.Id);
          ref.setRedirect(true);
          return ref;
      }
