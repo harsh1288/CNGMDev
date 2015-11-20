@@ -1,79 +1,75 @@
-<apex:page id="page1" sidebar="false" standardController="Account" extensions="GMPRRequestextension" cache="false" tabstyle="PR_Forms__tab" standardStylesheets="false" >
-  <!--  <apex:stylesheet value="{!URLFOR($Resource.GoalsJs, 'assets/css/bootstrap.css')}"/>
+<apex:page id="page1" sidebar="false" standardController="Account" extensions="CDFPRFormListctrl" cache="false" tabstyle="PR_Forms__tab" standardStylesheets="false" >
+ <!-- <apex:stylesheet value="{!URLFOR($Resource.GoalsJs, 'assets/css/bootstrap.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.GoalsJs, 'assets/css/bootstrap-responsive.css')}"/> -->
     <apex:stylesheet value="{!URLFOR($Resource.SalesforceLightningDesign, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
-    <head>
-        <title>Grant-Making Homepage</title>
-    </head>
+   
     <style>
-    .pageTitleIcon {
-        background-image: url("/img/icon/custom51_100/globe32.png");
-        background-position: 0 0;
-        height: 32px;
-        width: 32px;
-    }
-    .h3 {
-        font-size:24px;
-        //line-height: 20px;
-        line-height: 24px;
-        font-weight:bold;
-    }
-     .h4 {
-        font-size:18px;
-        line-height: 1.5;
-        font-weight:bold;
-    }
-    
-    table {
-        font-size:14px;
-    }
-    td .middle{
-     vertical-align:middle;
-       }
-    td .align{
-     text-align:center;
-       } 
-          
-    .countryselect{
-    font-size:16px;
-    color:black;
-    }
-    .link{
-    color:#2E7BBB;
-    text-decoration:underline;
-    }
-    
-    
-#pBlock #pbTable td {
-    max-width: 120px;
-    white-space: normal;
-} 
- .bPageHeader td.left div
-    {
-      width:260px;
-    }
-    
-    .ProcessingBackground
-        {
-            background-color: black;
-            opacity: 0.50;
-            filter: alpha(opacity = 50);
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            z-index: 9999;
-            top:0;
-            left:0;
-        }
-        .Processing
-        {
-            z-index: 9999;
-            left: 50%;
-            top: 50%;
-            text-align: center;
-            position: fixed;
-        }  
-        </style>
+		.pageTitleIcon {
+			background-image: url("/img/icon/custom51_100/globe32.png");
+			background-position: 0 0;
+			height: 32px;
+			width: 32px;
+		}
+		.h3 {
+			font-size:24px;
+			//line-height: 20px;
+			line-height: 24px;
+			font-weight:bold;
+		}
+		 .h4 {
+			font-size:18px;
+			line-height: 1.5;
+			font-weight:bold;
+		}
+		
+		table {
+			font-size:14px;
+		}
+		td .middle{
+		 vertical-align:middle;
+		}
+		td .align{
+		 text-align:center;
+		} 
+			  
+		.countryselect{
+		font-size:16px;
+		color:black;
+		}
+		.link{
+		color:#2E7BBB;
+		text-decoration:underline;
+		}
+		
+		
+		#pBlock #pbTable td {
+			max-width: 120px;
+			white-space: normal;
+		} 
+		.bPageHeader td.left div
+		{
+		  width:260px;
+		}
+		
+		.ProcessingBackground{
+			background-color: black;
+			opacity: 0.50;
+			filter: alpha(opacity = 50);
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 9999;
+			top:0;
+			left:0;
+		}
+		.Processing{
+			z-index: 9999;
+			left: 50%;
+			top: 50%;
+			text-align: center;
+			position: fixed;
+		}  
+    </style>
    
     <apex:includeScript value="{URLFOR(!$Resource.GoalsJs, 'assets/js/bootstrap.js')}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
@@ -87,102 +83,76 @@
             else
              document.getElementById('page1:frm:country').disabled = false;         
         }
+		
+		function closePanel(){
+			document.getElementById('Infopanel').style.display = 'none';
+        }
     </script>
    
     <apex:form id="frm" styleclass="slds" >
-    <!--  CSS for Spinner -->
    <!-- <div class="slds-spinner--medium" >
                 <apex:image url="/assets/images/spinners/slds_spinner_brand.gif" alt="Loading.." />
                 </div> -->
     <div id="divProcessing" style="display:none;">
-            <div class="ProcessingBackground"></div>
-            <div class="Processing"> 
+		<div class="ProcessingBackground">
+		</div>
+		    <div class="Processing"> 
             <apex:image alt="Processing" url="{!$Resource.LoadingCircle}" /> 
-                
             </div>
-     </div>  
-        <apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';" onstop="document.getElementById('divProcessing').style.display = 'none';">                            
-        </apex:actionStatus>
-         
+	</div>  
+	<apex:actionStatus id="Processing" onstart="document.getElementById('divProcessing').style.display = '';"        	 	onstop="document.getElementById('divProcessing').style.display = 'none';" >                            
+	</apex:actionStatus>
+	 
     <div style="padding:20px">
-                 <div>
-                    <span class="h3">
-                       Filter by Country                     
-                </span>
-                    <br/><br/>
-                    </div>
+		<div>
+			<span class="h3"> Filter by Country  </span><br/><br/>               
+		</div>
+    <div>
+	<apex:selectList size="1" style="width:20%" value="{!CountryId}" styleclass="slds-select" id="country" disabled="false"  rendered="{!!blnCountrySpecific}">
+		<apex:selectOptions value="{!selOptCountry}" />
+		<apex:actionSupport event="onchange" action="{!populatePRList}" reRender="frm" status="Processing"/>
+	</apex:selectList>
                     
-                 
-
-                    <div>
-                    <apex:selectList size="1" style="width:20%" value="{!CountryId}" styleclass="slds-select" id="country" disabled="false" rendered="{!!blnCountrySpecific}">
-                          <apex:selectOptions value="{!selOptCountry}" />
-                        <apex:actionSupport event="onchange" action="{!populatePRList}" reRender="frm" status="Processing"/>
-                    </apex:selectList>
-                    
-                    
-                           <apex:commandLink styleClass="slds-button slds-button--brand slds-button--small" action="/apex/CDFCreatePR" target="_blank">
-                                     <i class="icon-download icon-white">
-                                     </i> <strong>New PR Request</strong>
-                         </apex:commandLink>
-                    
-                    </div>
-                    
-                    <div>
-                        {!$label.GM_Home_Text}
-                    </div>
+	<apex:commandLink styleClass="slds-button slds-button--brand slds-button--small" action="/apex/CDFCreatePR" target="_blank">
+		 <i class="icon-download icon-white">
+		 </i> <strong>New PR Request</strong>
+   </apex:commandLink>
+	</div>
+	<div>
+		{!$label.GM_Home_Text}
+	</div>
         </div>
        
-      
-        <div id="pBlock" style="padding:20px" styleclass="slds-grid">
-           <span class="h3">
-                     PR Forms List:                     
-                </span>
+       <div id="pBlock" style="padding:20px" styleclass="slds-grid">
+           <span class="h3"> PR Forms List: </span>
+                                         
             <table id="pbTable" class="slds-table slds-table--bordered slds-max-medium-table--stacked" width="80%" cellspacing="0" cellpadding="0" border="0">
                 <tr class="slds-text-heading--label">
                    
-                    <th class="slds-row-select" style="max-width : 117px ;white-space: normal;">PR Name</th>
-                    <th style="max-width : 117px ;white-space: normal;">Country</th>
-                    <th style="max-width : 117px ;white-space: normal;">Short Name</th>
-                    <th style="max-width : 117px ;white-space: normal;">Status</th>
-                 
+                    <th class="slds-row-select" style="max-width:117px; font-weight: bold;white-space: normal;">PR Name</th>
+                    <th style="max-width : 117px ; font-weight: bold;white-space: normal;">Country</th>
+                    <th style="max-width : 117px ;font-weight: bold;white-space: normal;">Short Name</th>
+                    <th style="max-width : 117px ;font-weight: bold;white-space: normal;">Status</th>
                 </tr>
-            <apex:repeat value="{!lstAccount}" var="IP">
+				<apex:repeat value="{!lstAccount}" var="acc">
                 <tr>
-                   
-                   
-                    <td class="middle">
-                       
-                        <apex:outputlink value="{!if(blnExternalPro,'/GM','')}/apex/CDF_PRApprovalForm" styleclass="link" target="_blank">{!IP.Name}
-                         </apex:outputlink>
+                   <td class="middle">
+                        <apex:outputlink rendered="{!if(acc.Approval_Status__c !='Requested',true,false)}"  value="{!if(blnExternalPro,'/GM','')}/apex/CDF_PRApprovalForm" styleclass="link" target="_blank">{!acc.Name}
+                        </apex:outputlink>
+                        <apex:outputField rendered="{!if(acc.Approval_Status__c =='Requested',true,false)}" value="{!acc.Name}"/>
                     </td>
                     <td class="middle">
-                        <apex:outputField value="{!IP.Country__c}"/>  
+                        <apex:outputField value="{!acc.Country__r.Name}"/>  
                     </td>
                     <td class="middle">
-                        <apex:outputField value="{!IP.Short_Name__c}"/>  
+                        <apex:outputField value="{!acc.Short_Name__c}"/>  
                     </td>
-                  
-         
-                  
-                    <td class="middle" style="color:{!IF(IP.Approval_Status__c ='Update information', 'darkviolet', (IF(IP.Approval_Status__c ='Send to finance system for approval', 'blue',IF(IP.Approval_Status__c ='Approved', 'Green',IF(IP.Approval_Status__c ='Finance Officer verification', 'gold','red')))))};">
-                        <apex:outputField value="{!IP.Approval_Status__c}" />
+                    <td class="middle" style="color:{!IF(acc.Approval_Status__c ='Update information', 'darkviolet', (IF(acc.Approval_Status__c  ='Send to finance system for approval', 'blue',IF(acc.Approval_Status__c ='Approved', 'Green',IF(acc.Approval_Status__c ='Finance Officer verification', 'gold','red')))))};">
+                        <apex:outputField value="{!acc.Approval_Status__c}"/>
                     </td>
-                   
-                      
-                                        
                 </tr>
-                  
                 </apex:repeat>
-               
-                </table>
-            
-            <br/>
+            </table>
         </div>
-        <script>
-         function closePanel(){
-                document.getElementById('Infopanel').style.display = 'none';
-            }
-        </script>
-    </apex:form>
+    </apex:form> 
 </apex:page>
