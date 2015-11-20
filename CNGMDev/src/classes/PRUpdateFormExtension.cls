@@ -160,7 +160,7 @@ public with sharing class PRUpdateFormExtension {
      public PageReference renderEditable()   // //upd by jl  //Modified 2014-06-17 by Matthew Miller to include Locked__c
      {
          if(account.Approval_Status__c == System.Label.CDF_Update_Information && account.Locked__c == false){
-             Pagereference pg = new Pagereference('/apex/CDF_PRApprovalForm?id='+account.Id);
+             Pagereference pg = new Pagereference('/apex/CDF_PRApprovalForm_Clone?id='+account.Id);
              pg.setRedirect(true);
              return pg;
          }       
