@@ -132,8 +132,8 @@
                     </apex:selectList>
                                        
                            <apex:commandLink styleClass="slds-button slds-button--brand" action="/apex/GM_GrantCreation" target="_blank">
-                                     <i class="icon-download icon-white">
-                                     </i> <strong>New Grant Request</strong>
+                                     
+                                    <strong>New Grant Request</strong>
                          </apex:commandLink>
                     
                     </div>
