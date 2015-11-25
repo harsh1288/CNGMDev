@@ -73,9 +73,9 @@
                             </apex:pageBlockTable>-->
                     </apex:PageBlockSection>
                     
-                    <apex:pageBlockButtons >
+                    <apex:pageBlockButtons location="top">
                      <!--   <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/> -->
-                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Create GIP" action="{!createGIPExtSSF}" />
+                        <apex:commandButton styleClass="slds-button slds-button--neutral" value="Create GIP" action="{!createGIPExtSSF}" />
                     </apex:pageBlockButtons>
                 </apex:pageBlock>
                 <apex:pageBlock rendered="{!blnNewGrant}">
@@ -102,13 +102,13 @@
                                 <apex:column value="{!g.name}"/>
                             </apex:pageBlockTable>-->
                     </apex:PageBlockSection>
-                    <apex:pageBlockButtons >
+                    <apex:pageBlockButtons location="top">
                        <!-- <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/> -->
-                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Create GIP" action="{!createNewGrant}" rerender="null" />
+                        <apex:commandButton styleClass="slds-button slds-button--neutral" value="Create GIP" action="{!createNewGrant}" rerender="null" />
                     </apex:pageBlockButtons>
                 </apex:pageBlock>
-                <apex:pageBlockButtons >
-                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Grant Form List" action="/apex/GM_newGrantRequest"/>
+                <apex:pageBlockButtons location="top" >
+                        <apex:commandButton styleClass="slds-button slds-button--neutral" value="Grant Form List" action="/apex/GM_newGrantRequest"/>
                         
                 </apex:pageBlockButtons>
             </apex:pageBlock>
